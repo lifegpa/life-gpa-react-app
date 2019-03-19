@@ -1,15 +1,17 @@
-import { LOGIN_START, LOGIN_SUCCESS } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL } from '../actions';
 
 
 
 const initialState = {
 tasks: [], 
 loggingIn: false,
+gettingData: false,
 updatingTask: false,
 addingTask: false,
 gettingTask: false,
 deletingTask: false,
 error: null, 
+errorStatusCode: null,
 token: localStorage.getItem('token')
 } 
 
@@ -26,7 +28,27 @@ const reducer = (state = initialState, action) => {
                 loggingIn: false, 
                 token: action.payload
             }
-        
+        case GETTING_DATA: 
+            return {
+                ...state, 
+                gettingData: true, 
+
+            }
+        case GET_DATA_SUCCESS: 
+            return {
+                ...state, 
+                gettingData: false,
+                errorStatusCode: null,
+                data: action.payload, 
+                error: null,
+            }
+        case GET_DATA_FAIL: 
+            return {
+                ...state, 
+                error: action.payload.data.error,
+                errorStatusCode: action.payload.status,
+                gettingData: false
+            }
         default: 
         return state;
     }

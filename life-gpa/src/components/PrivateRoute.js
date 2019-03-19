@@ -8,7 +8,9 @@ const PrivateRoute = ({
   token,
   ...rest
 }) => {
+    console.log(token);
   return (
+      <div>
     <Route
       {...rest}
       render={props =>
@@ -19,6 +21,7 @@ const PrivateRoute = ({
         )
       }
     />
+    </div>
   );
 };
 

@@ -48,8 +48,8 @@ export const login = credentials => dispatch => {
     dispatch({ type: LOGIN_START }); 
     return axios
     .post('https://life-gpa-api.herokuapp.com/api/users/login', credentials)
-    .then( res => { localStorage.setItem('token', res.data.payload); 
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload }); 
+    .then( res => { localStorage.setItem('token', res.data); 
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data}); 
         history.push('/protected');
 })
 }; 
@@ -72,7 +72,11 @@ export const signUp = credentials => dispatch => {
 export const getData = () => dispatch => {
     dispatch({ type: GETTING_DATA }); 
     axios
-    .get('life-gpa-api.herokuapp.com/api')
+    .get('life-gpa-api.herokuapp.com/api', {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
     .then(res => {
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
     })
