@@ -13,7 +13,12 @@ class Login extends React.Component {
         }
 
     handleInput = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+            credentials: {
+            ...this.state.credentials,
+             [e.target.name]: e.target.value 
+            }
+        });
     }
 
     login = e => {
@@ -28,7 +33,7 @@ class Login extends React.Component {
         return (
         <div>
             <h1>Welcome Back!</h1>
-            <form>
+            <form onSubmit={this.login}>
             <input 
             type="text"
             name="name"

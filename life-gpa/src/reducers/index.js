@@ -1,4 +1,4 @@
-import { LOGIN_START } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS } from '../actions';
 
 
 
@@ -9,7 +9,8 @@ updatingTask: false,
 addingTask: false,
 gettingTask: false,
 deletingTask: false,
-error: null
+error: null, 
+token: localStorage.getItem('token')
 } 
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, 
                 loggingIn: true
+            }
+        case LOGIN_SUCCESS: 
+            return {
+                ...state, 
+                loggingIn: false, 
+                token: action.payload
             }
         
         default: 
