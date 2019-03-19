@@ -1,12 +1,13 @@
 import React from 'react'; 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { login } from '../actions';
 
 
 class Login extends React.Component {
     state= { 
             credentials: {
-            name: '',
+            // name: '',
             email: '',
             password: ''
             }
@@ -32,15 +33,15 @@ class Login extends React.Component {
     render() { 
         return (
         <div>
-            <h1>Welcome Back!</h1>
+            <h1>Welcome Back to LifeGPA!</h1>
             <form onSubmit={this.login}>
-            <input 
+            {/* <input 
             type="text"
             name="name"
             value={this.state.credentials.name}
             placeholder="name"
             onChange={this.handleInput}
-             /> 
+             />  */}
             <input 
             type="text"
             name="email"
@@ -55,7 +56,9 @@ class Login extends React.Component {
             placeholder="password" 
             onChange={this.handleInput} /> 
             <button type="submit">Log in</button>
-            </form>
+            </form> 
+            <h3>Not signed up yet?</h3>
+            <Link to="/signup">Sign up now</Link>
         </div>
         )
     }

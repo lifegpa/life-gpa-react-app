@@ -1,28 +1,38 @@
 import React from "react";
-
+import { Link } from 'react-router-dom'; 
 
 class SignupForm extends React.Component {
     constructor() {
         super();
         this.state={
-            username: '',
+            name: '',
             email: '',
             password: ''
         }
     }
 
     handleInput = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({
+            credentials: {
+            ...this.state.credentials,
+             [e.target.name]: e.target.value 
+            }
+        });
     }
 
-    handleLogin = e => {
-
+    signUp = e => {
+        e.preventDefault();
+        this.props
+        .signUp(this.state.credentials) 
+        .then(() => this.props.history.push('/protected'))
+        .catch(err => console.log(err));
     }
 
     render() {
+        return (
         <div>
-            <h1>Sign up now!</h1>
-            <form>
+            <h1>Sign up for LifeGPA!</h1>
+            <form onSubmit={this.signUp}>
             <input 
             type="text"
             name="name"
@@ -40,9 +50,12 @@ class SignupForm extends React.Component {
             name="password"
             placeholder="password" 
             onChange={this.handleInput} /> 
-            <button type="submit">Log in</button>
-            </form>
+            <button type="submit">Start your journey</button>
+            </form> 
+            <h3>Already signed up?</h3>
+            <Link to="/login">Log in</Link>
         </div>
+        )
     }
 }
 

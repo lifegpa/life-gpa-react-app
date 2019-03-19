@@ -10,6 +10,14 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOG_OUT = "LOG_OUT"; 
 
+
+// sign up 
+
+export const SIGN_UP = "SIGN_UP"; 
+export const SIGNUP_START = "SIGNUP_START";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"; 
+export const SIGNUP_FAIL = "SIGNUP_FAIL";
+
 // retrieve data 
 
 export const GETTING_DATA = "GETTING_DATA" ;
@@ -34,11 +42,12 @@ export const TOGGLE_TASK_DONE = "TOGGLE_TASK_DONE";
 
 // ACTION CREATORS 
 
+//LOGIN ACTION CREATOR
 
 export const login = credentials => dispatch => {
     dispatch({ type: LOGIN_START }); 
     return axios
-    .post('http://life-gpa-api.herokuapp.com/', credentials)
+    .post('https://life-gpa-api.herokuapp.com/api/users/login', credentials)
     .then( res => { localStorage.setItem('token', res.data.payload); 
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload }); 
         history.push('/protected');
@@ -46,6 +55,25 @@ export const login = credentials => dispatch => {
 }; 
 
 
+// SIGNUP ACTION CREATOR 
+
+export const signUp = credentials => dispatch => {
+    dispatch({ type: SIGNUP_START }); 
+    return axios
+    .post('https://life-gpa-api.herokuapp.com/api/users/register', credentials)
+    .then( res => { localStorage.setItem('token', res.data.payload); 
+        dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload }); 
+        history.push('/protected');
+})
+}; 
+
+// GET DATA ACTION CREATOR 
+
+export const getData = () => dispatch => {
+    dispatch({ type: GETTING_DATA }); 
+    axios
+    .get('')
+}
 
 
 
