@@ -72,7 +72,13 @@ export const signUp = credentials => dispatch => {
 export const getData = () => dispatch => {
     dispatch({ type: GETTING_DATA }); 
     axios
-    .get('')
+    .get('life-gpa-api.herokuapp.com/api')
+    .then(res => {
+        dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
+    })
+    .catch( err => {
+            dispatch({ type: GET_DATA_FAIL, payload: err.response })
+    })
 }
 
 

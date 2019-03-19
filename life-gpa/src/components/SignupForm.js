@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; 
+import { signUp } from '../actions';
 
 class SignupForm extends React.Component {
     constructor() {
@@ -59,4 +61,11 @@ class SignupForm extends React.Component {
     }
 }
 
-export default SignupForm;
+const mapStateToProps = ({ error, signingUp }) => ({
+    error, 
+    signingUp
+}); 
+
+
+
+export default connect(mapStateToProps, { signUp })(SignupForm);  

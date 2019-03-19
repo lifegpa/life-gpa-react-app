@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
-import SignupForm from './components/form-components/SignupForm';
+import SignupForm from './components/SignupForm';
 
 
 
