@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { connect } from 'react-redux'; 
-
-
+import { addTask } from '../actions';
+ 
 class AddTaskForm extends React.Component {
     constructor() {
         super();
@@ -18,14 +18,14 @@ class AddTaskForm extends React.Component {
     handleInput = e => {
         this.setState({ 
             task: {
-                ...this.state, 
                 [e.target.name]: e.target.value 
             }
         })
     }
 
-    addTask = () => {
-        console.log("this is a task added")
+    addTask = e => {
+        e.preventDefault();
+        this.props.addTask()
     }
 
     render() {
@@ -60,4 +60,4 @@ const mapStateToProps = ({ error, addingTask }) => ({
 }); 
 
 
-export default connect(mapStateToProps, {})(AddTaskForm); 
+export default connect(mapStateToProps, { addTask })(AddTaskForm); 

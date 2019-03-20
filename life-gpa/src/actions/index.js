@@ -55,8 +55,8 @@ export const login = credentials => dispatch => {
     dispatch({ type: LOGIN_START }); 
     return axios
     .post('https://life-gpa-api.herokuapp.com/api/users/login', credentials)
-    .then( res => { localStorage.setItem('token', res.data); 
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data}); 
+    .then( res => { localStorage.setItem('token', res.data.token); 
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data.token}); 
         history.push('/protected');
 })
 }; 
