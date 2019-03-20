@@ -13,7 +13,17 @@ import Nav from './Nav';
 class Dashboard extends React.Component {
     constructor() {
         super();
-    }
+        this.state = {
+            tasks: [
+                {name: 'eat',
+            category: 'health',
+        completed: false}, 
+            {name: 'sleep', 
+        category: 'health', 
+    completed: true}
+            ]
+        }
+    } 
     
     componentDidMount() {
         this.props.getData(); 
@@ -28,7 +38,7 @@ class Dashboard extends React.Component {
             <Nav /> 
             <h1>Hi {this.props.user}!</h1> 
             <GPAContainer />  
-            <TaskList  /> 
+            <TaskList tasks={this.state.tasks} /> 
         </div>
         )
     }

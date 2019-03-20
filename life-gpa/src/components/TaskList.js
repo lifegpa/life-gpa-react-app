@@ -9,12 +9,11 @@ const TaskList = props => {
     return (
         <div>
             <h1>Tasks</h1>
-            {/* {props.tasks.map(task => { return (
+            {props.tasks.map(task => { return (
                 <div>
-                <p>Is this working?!</p>
                 <Task task={task} /> 
                 </div>
-            )})} */}
+            )})}
             <AddTasksForm />
         </div>
     )
