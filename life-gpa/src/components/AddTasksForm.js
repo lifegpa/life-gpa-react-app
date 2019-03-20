@@ -33,20 +33,18 @@ class AddTaskForm extends React.Component {
             <div>
             <p>Add a daily task that your GPA will be calculated from. You can give your tasks any category that makes sense to you!</p>
             <form onSubmit={this.addTask}>
-            <label>task</label>
                 <input 
                 type="text" 
                 name="task"
                 value={this.state.task.task}
                 onChange={this.handleInput}
-                placeholder="30 minutes of cardio"
+                placeholder="task"
                 /> 
-            <label>category</label>
                 <input 
                 type="text" 
                 name="category"
                 value={this.state.task.category}
-                placeholder="fitness"
+                placeholder="category"
                 onChange={this.handleInput}
                 />
                 <button type="submit">add task</button> 

@@ -6,7 +6,6 @@ import AddTasksForm from './AddTasksForm';
 const TaskList = props => {
     return (
         <div>
-            <Task /> 
             <AddTasksForm />
         </div>
     )
