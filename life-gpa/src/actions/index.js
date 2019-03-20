@@ -77,7 +77,6 @@ export const signUp = credentials => dispatch => {
 // GET DATA ACTION CREATOR 
 
 export const getData = () => dispatch => {
-    dispatch({ type: GETTING_DATA }); 
     axios
     .get('https://life-gpa-api.herokuapp.com/api/tasks', {
         headers: {
@@ -85,7 +84,7 @@ export const getData = () => dispatch => {
         }
     })
     .then(res => {
-        console.log("res", res)
+        console.log("res", res.data)
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
     })
     .catch( err => {

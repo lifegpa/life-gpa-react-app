@@ -4,9 +4,17 @@ import AddTasksForm from './AddTasksForm';
 
 
 const TaskList = props => {
+    console.log("tasklist props", props.tasks);
+
     return (
         <div>
-            <Task /> 
+            <h1>Tasks</h1>
+            {/* {props.tasks.map(task => { return (
+                <div>
+                <p>Is this working?!</p>
+                <Task task={task} /> 
+                </div>
+            )})} */}
             <AddTasksForm />
         </div>
     )

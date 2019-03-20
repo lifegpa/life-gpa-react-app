@@ -11,9 +11,13 @@ import Nav from './Nav';
 
 
 class Dashboard extends React.Component {
+    constructor() {
+        super();
+    }
     
     componentDidMount() {
-       getData();
+        this.props.getData(); 
+        console.log('component did mount props', this.props);
     }
 
     render() {
@@ -22,9 +26,9 @@ class Dashboard extends React.Component {
         else return (
         <div>
             <Nav /> 
-            <h1>Hi [name of user]!</h1> 
+            <h1>Hi {this.props.user}!</h1> 
             <GPAContainer />  
-            <TaskList /> 
+            <TaskList  /> 
         </div>
         )
     }
