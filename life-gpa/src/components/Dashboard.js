@@ -5,8 +5,7 @@ import Loader from 'react-loader-spinner';
 import { getData } from '../actions'; 
 
 import TaskList from './TaskList';
-import OverallGPA from './OverallGPA';
-import DailyGPA from './DailyGPA';
+import GPAContainer from './GPAContainer'; 
 
 
 
@@ -22,8 +21,7 @@ class Dashboard extends React.Component {
         else return (
         <div>
             <h1>Hi [name of user]!</h1> 
-            <OverallGPA /> 
-            <DailyGPA /> 
+            {/* <GPAContainer />   */}
             <TaskList /> 
         </div>
         )
