@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 import { login } from '../actions';
 
 
@@ -31,6 +32,9 @@ class Login extends React.Component {
     }
 
     render() { 
+        if (this.props.signingIn) 
+        return <Loader type="Audio" color="#C62727" height={100} width={100} />
+        else
         return (
         <div>
             <h1>Welcome Back to LifeGPA!</h1>
