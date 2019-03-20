@@ -1,21 +1,31 @@
 import React from 'react';
 
 
-
-const Task = props => {
-    console.log("task props", props);
+class Task extends React.Component { 
+    constructor() {
+        super();
+    // this.state = { 
+    //     task: {
+    //     name: this.props.task.name,
+    //     category: this.props.task.category,
+    //     completed: this.props.task.completed
+    //     }
+    // }
+}
+    render() {
     return (
         <div>
-            <p>Task: {props.task.name}</p>
-            <p>Category: {props.task.category}</p> 
-            {props.task.completed ?  <p>complete</p> :
+            <p>Task: {this.props.task.name}</p>
+            <p>Category: {this.props.task.category}</p> 
+            {this.props.task.completed ?  <p>complete</p> :
                 <p>incomplete</p>
             }
-            <button onClick={() => props.toggleCompleted}>I did this today!</button>
-            <button>delete</button> 
+            <button onClick={() => this.props.toggleCompleted(this.props.task)}>I did this today!</button>
+            <button onClick={() => {this.props.deleteTask(this.props.task)}}>delete</button> 
             <button>edit</button>
         </div>
     )
+    }
 } 
 
 export default Task; 

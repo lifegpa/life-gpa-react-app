@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { getData, toggleCompleted } from '../actions'; 
+import { getData, toggleCompleted, deleteTask } from '../actions'; 
 
 import TaskList from './TaskList';
 import GPAContainer from './GPAContainer'; 
@@ -14,36 +14,33 @@ class Dashboard extends React.Component {
     constructor() {
         super();
         this.state = {
-            tasks: [
-                {name: 'eat',
-            category: 'health',
-        completed: false}, 
-            {name: 'sleep', 
-        category: 'health', 
-    completed: true}
-            ]
+            tasks: []
         }
     } 
     
     componentDidMount() {
         this.props.getData(); 
-        console.log('component did mount props', this.props);
     }
 
 
-    toggleCompleted = () => {
-        this.props.toggleCompleted();
+    toggleCompleted = id => {
+        this.props.toggleCompleted(id);
+    }
+
+    deleteTask = id => {
+        this.props.deleteTask(id);
+        this.props.getData();
     }
 
     render() {
         if (!this.props.data) 
-        return <Loader type="Audio" color="#C62727" height={100} width={100} />
+        return <Loader type="Audio" color="#C62727" height={300} width={300} />
         else return (
         <div>
             <Nav /> 
             <h1>Hi {this.props.user}!</h1> 
             <GPAContainer />  
-            <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} /> 
+            <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} deleteTask={this.deleteTask} /> 
         </div>
         )
     }
@@ -54,4 +51,4 @@ const mapStateToProps = ({ data }) => ({
     data
 })
 
-export default withRouter(connect(mapStateToProps, {getData, toggleCompleted })(Dashboard));
+export default withRouter(connect(mapStateToProps, {getData, toggleCompleted, deleteTask })(Dashboard));

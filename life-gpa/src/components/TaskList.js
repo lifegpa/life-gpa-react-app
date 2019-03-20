@@ -11,7 +11,7 @@ const TaskList = props => {
             <h1>Tasks</h1>
             {props.tasks.map(task => { return (
                 <div>
-                <Task task={task} toggleCompleted={props.toggleCompleted} /> 
+                <Task key={task._id} task={task} toggleCompleted={props.toggleCompleted} deleteTask={props.deleteTask} /> 
                 </div>
             )})}
             <button>Submit your tasks for grading!</button>

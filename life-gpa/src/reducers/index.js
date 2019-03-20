@@ -88,7 +88,12 @@ const reducer = (state = initialState, action) => {
         case TOGGLE_TASK_DONE: 
             return {
                 ...state,
-                data: action.payload
+                data: state.data.map((task) => { 
+                    if (action.payload=== task._id) {
+                        task.completed = !task.completed
+                    } 
+                    return task;
+                }) 
             }
         default: 
         return state;
