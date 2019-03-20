@@ -11,9 +11,10 @@ const TaskList = props => {
             <h1>Tasks</h1>
             {props.tasks.map(task => { return (
                 <div>
-                <Task task={task} /> 
+                <Task task={task} toggleCompleted={props.toggleCompleted} /> 
                 </div>
             )})}
+            <button>Submit your tasks for grading!</button>
             <AddTasksForm />
         </div>
     )

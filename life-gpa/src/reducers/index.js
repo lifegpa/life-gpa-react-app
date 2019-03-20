@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE, toggleDone } from '../actions';
 
 
 
@@ -88,7 +88,7 @@ const reducer = (state = initialState, action) => {
         case TOGGLE_TASK_DONE: 
             return {
                 ...state,
-                tasks: action.payload
+                data: action.payload
             }
         default: 
         return state;

@@ -11,7 +11,7 @@ const Task = props => {
             {props.task.completed ?  <p>complete</p> :
                 <p>incomplete</p>
             }
-            <button>I did this today!</button>
+            <button onClick={() => props.toggleCompleted}>I did this today!</button>
             <button>delete</button> 
             <button>edit</button>
         </div>
