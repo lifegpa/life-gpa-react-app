@@ -7,7 +7,7 @@ class AddTaskForm extends React.Component {
         super();
     this.state = { 
         task: {
-        task: '',
+        name: '',
         category: '',
         completed: false
         }
@@ -18,6 +18,7 @@ class AddTaskForm extends React.Component {
     handleInput = e => {
         this.setState({ 
             task: {
+                ...this.state.task,
                 [e.target.name]: e.target.value 
             }
         })
@@ -25,7 +26,8 @@ class AddTaskForm extends React.Component {
 
     addTask = e => {
         e.preventDefault();
-        this.props.addTask()
+        console.log("state.task", this.state.task);
+        this.props.addTask(this.state.task);
     }
 
     render() {
@@ -35,8 +37,8 @@ class AddTaskForm extends React.Component {
             <form onSubmit={this.addTask}>
                 <input 
                 type="text" 
-                name="task"
-                value={this.state.task.task}
+                name="name"
+                value={this.state.task.name}
                 onChange={this.handleInput}
                 placeholder="task"
                 /> 

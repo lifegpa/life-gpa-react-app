@@ -101,7 +101,6 @@ export const getData = () => dispatch => {
 // ADD TASK 
 
 export const addTask = task => dispatch => {
-    dispatch({ type: ADDING_TASK });
     return axios
       .post('https://life-gpa-api.herokuapp.com/api/tasks', task, {
         headers: { Authorization: localStorage.getItem('token') }
@@ -155,6 +154,19 @@ export const updateTask = task => dispatch => {
 
 }
 
-// export const markDone = () => {
-
-// }
+// export const markDone = task, completed => dispatch => {
+//     dispatch({ type: TOGGLE_TASK_DONE, payload: completed })
+//     return axios
+//     .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task.id}`, {
+//         headers: { Authorization: localStorage.getItem('token') }
+//     })
+//     .then(res => { console.log(res)
+//     })
+//     .catch(err => {
+//         if (err.response.status === 403) {
+//         dispatch({ type: UNAUTHORIZED_USER, payload: err.response });
+//         } else {
+//         dispatch({ type: UPDATE_TASK_FAIL, payload: err.response });
+//             }
+//           });
+// }; 
