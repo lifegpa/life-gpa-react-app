@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE } from '../actions';
 
 
 
@@ -49,6 +49,47 @@ const reducer = (state = initialState, action) => {
                 errorStatusCode: action.payload.status,
                 gettingData: false
             }
+        case ADDING_TASK: 
+            return {
+                ...state, 
+                addingTask: true
+            }
+        case ADD_TASK: 
+            return {
+                ...state,
+                tasks: action.payload,
+                addingTask: false, 
+                error: null,
+                errorStatusCode: null,
+            }
+        case DELETING_TASK: 
+            return {
+                ...state, 
+                deletingTask: true
+            }
+        case DELETE_TASK: 
+            return {
+                ...state,
+                deletingTask: false
+            }
+        case UPDATING_TASK: 
+            return {
+                ...state,
+                updatingTask: true
+            }
+        case UPDATE_TASK: 
+            return {
+                ...state, 
+                updatingTask: false, 
+                error: null,
+                errorStatusCode: null,
+                tasks: action.payload
+            }
+        case TOGGLE_TASK_DONE: 
+            return {
+                ...state,
+                tasks: action.payload
+            }
         default: 
         return state;
     }
@@ -67,39 +108,4 @@ export default reducer;
 //                 ...state, 
 //                 tasks: action.payload, 
 //                 gettingTask: false}
-//         case ADDING_TASK: 
-//             return {
-//                 ...state, 
-//                 addingTask: true
-//             }
-//         case ADD_TASK: 
-//             return {
-//                 ...state,
-//                 tasks: action.payload,
-//                 addingTask: false
-//             }
-//         case DELETING_TASK: 
-//             return {
-//                 ...state, 
-//                 deletingTask: true
-//             }
-//         case DELETE_TASK: 
-//             return {
-//                 ...state,
-//                 deletingTask: false
-//             }
-//         case UPDATING_TASK: 
-//             return {
-//                 ...state,
-//                 updatingTask: true
-//             }
-//         case UPDATE_TASK: 
-//             return {
-//                 ...state, 
-//                 updatingTask: false
-//             }
-//         case TOGGLE_TASK_DONE: 
-//             return {
-//                 ...state,
-//                 tasks: action.payload
-//             }
+

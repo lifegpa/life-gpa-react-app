@@ -1,12 +1,13 @@
 import React from 'react';
 import Task from './Task';
+import AddTasksForm from './AddTasksForm';
 
 
 const TaskList = props => {
     return (
         <div>
-            <p>This will map over tasks</p>
             <Task /> 
+            <AddTasksForm />
         </div>
     )
 }

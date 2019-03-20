@@ -24,16 +24,23 @@ export const GETTING_DATA = "GETTING_DATA" ;
 export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS"; 
 export const GET_DATA_FAIL = "GET_DATA_FAIL"; 
 
+//errors 
+
+export const UNAUTHORIZED_USER = "UNAUTHORIZED_USER";
+
 
 // tasks 
 export const GET_TASK = "GET_TASK";
 export const GETTING_TASK = "GETTING_TASK";
 export const ADD_TASK = "ADD_TASK"; 
 export const ADDING_TASK = "ADDING_TASK";
+export const ADD_TASK_FAIL = "ADD_TASK_FAIL";
 export const DELETE_TASK = "DELETE_TASK";
 export const DELETING_TASK = "DELETING_TASK";
+export const DELETE_TASK_FAIL = "DELETE_TASK_FAIL"; 
 export const UPDATE_TASK = "UPDATE_TASK"; 
 export const UPDATING_TASK = "UPDATING_TASK";
+export const UPDATE_TASK_FAIL = "UPDATE_TASK_FAIL";
 
 //  grade tasks
 
@@ -72,33 +79,81 @@ export const signUp = credentials => dispatch => {
 export const getData = () => dispatch => {
     dispatch({ type: GETTING_DATA }); 
     axios
-    .get('life-gpa-api.herokuapp.com/api', {
+    .get('https://life-gpa-api.herokuapp.com/api/tasks', {
         headers: {
             Authorization: localStorage.getItem('token')
         }
     })
     .then(res => {
+        console.log("res", res)
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
     })
     .catch( err => {
+        if (err.response.status === 403) {
+            dispatch({ type: UNAUTHORIZED_USER, payload: err.response })
+        } else {
             dispatch({ type: GET_DATA_FAIL, payload: err.response })
+        }
     })
 }
 
 
+// ADD TASK 
 
+export const addTask = task => dispatch => {
+    dispatch({ type: ADDING_TASK });
+    return axios
+      .post('https://life-gpa-api.herokuapp.com/api/tasks', task, {
+        headers: { Authorization: localStorage.getItem('token') }
+      })
+      .then(res => {
+        dispatch({ type: ADD_TASK, payload: res.data });
+      })
+      .catch(err => {
+        if (err.response.status === 403) {
+          dispatch({ type: UNAUTHORIZED_USER, payload: err.response });
+        } else {
+          dispatch({ type: ADD_TASK_FAIL, payload: err.response });
+        }
+      });
+}
 
-// export const addTask = () => {
+export const deleteTask = task => dispatch => {
+    dispatch({ type: DELETING_TASK }); 
+    return axios 
+    .delete(`https://life-gpa-api.herokuapp.com/api/tasks/${task.id}`, {
+        headers: { Authorization: localStorage.getItem('token') }
+    })
+    .then(res => {
+        dispatch({type: DELETE_TASK, payload: res.data }) 
+    })
+    .catch(err => {
+        if (err.response.status === 403) {
+        dispatch({ type: UNAUTHORIZED_USER, payload: err.response });
+        } else {
+        dispatch({ type: DELETE_TASK_FAIL, payload: err.response });
+            }
+          });
+} 
 
-// }
+export const updateTask = task => dispatch => {
+    dispatch({ type: UPDATING_TASK }); 
+    return axios 
+    .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task.id}`, {
+        headers: { Authorization: localStorage.getItem('token') }
+    })
+    .then(res => {
+        dispatch({type: UPDATE_TASK, payload: res.data }) 
+    })
+    .catch(err => {
+        if (err.response.status === 403) {
+        dispatch({ type: UNAUTHORIZED_USER, payload: err.response });
+        } else {
+        dispatch({ type: UPDATE_TASK_FAIL, payload: err.response });
+            }
+          });
 
-// export const deleteTask = () => {
-
-// } 
-
-// export const updateTask = () => {
-
-// }
+}
 
 // export const markDone = () => {
 
