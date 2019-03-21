@@ -1,17 +1,39 @@
 import React from 'react'; 
-import DailyGPA from './DailyGPA'; 
-import OverallGPA from './OverallGPA'; 
-
-
+import { connect } from 'react-redux';
+import { getGPA } from '../actions'; 
 class GPAContainer extends React.Component {
+    constructor() {
+        super(); 
+        this.state = {
+            GPA: {
+                weekly: 0,
+                daily: 0,
+                monthly: 0,
+                allTime: 0
+            }
+        }
+    }
+
+    componentDidMount() {
+        this.props.getGPA();
+    }
+
+
     render() {
     return (
         <div>
-            <DailyGPA /> 
-            <OverallGPA /> 
+         {this.props.daily}
+         {this.props.weekly}
+         {this.props.monthly}
+         {this.props.allTime}
         </div>
     )
-    } 
-}
+    }
+} 
 
-export default GPAContainer; 
+
+const mapStateToProps = ({ gpa }) => ({
+    gpa
+}); 
+
+export default connect(mapStateToProps, { getGPA })(GPAContainer);  

@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE, toggleDone } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE, GET_GPA_SUCCESS, GET_GPA_FAIL } from '../actions';
 
 
 
@@ -8,6 +8,7 @@ loggingIn: false,
 gettingData: false,
 updatingTask: false,
 addingTask: false,
+gettingGPA: false,
 gettingTask: false,
 deletingTask: false,
 error: null, 
@@ -49,6 +50,21 @@ const reducer = (state = initialState, action) => {
                 errorStatusCode: action.payload.status,
                 gettingData: false
             }
+        case GET_GPA_SUCCESS: 
+            return {
+                ...state, 
+                error: action.payload.data.error,
+                errorStatusCode: action.payload.status,
+                gettingGPA: false
+            }
+        case GET_GPA_FAIL: 
+            return {
+                ...state, 
+                error: action.payload.data.error,
+                errorStatusCode: action.payload.status,
+                gettingGPA: false
+            }
+
         case ADDING_TASK: 
             return {
                 ...state, 

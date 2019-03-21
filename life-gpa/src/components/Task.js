@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'; 
+import { openUpdateTask } from '../actions';
 
 
 class Task extends React.Component { 
@@ -12,7 +14,27 @@ class Task extends React.Component {
     //     }
     // }
 }
+
+handleInput = e => {
+    this.setState({
+      
+        ...this.state,
+         [e.target.name]: e.target.value 
+        
+    });
+}
+
     render() {
+        if (this.props.updatingTask) return (
+            <div>
+                <form onSubmit={() => this.props.updateTask()}>
+                    <input onChange={this.handleInput} type="text" name="task" placeholder={this.props.task.name} value={this.props.task.name} /> 
+                    <input onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category} value={this.props.task.category} /> 
+                    <button type="submit">submit</button>
+                </form>
+            </div>
+        ) 
+        else 
     return (
         <div>
             <p>Task: {this.props.task.name}</p>
@@ -22,10 +44,16 @@ class Task extends React.Component {
             }
             <button onClick={() => this.props.toggleCompleted(this.props.task)}>I did this today!</button>
             <button onClick={() => {this.props.deleteTask(this.props.task)}}>delete</button> 
-            <button>edit</button>
+            <button onClick={() => this.props.openUpdateTask(this.props.task)}>edit</button>
         </div>
     )
     }
 } 
 
-export default Task; 
+const mapStateToProps = ({ error, updatingTask }) => ({
+    error, 
+    updatingTask
+}); 
+
+
+export default connect(mapStateToProps, { openUpdateTask })(Task); 

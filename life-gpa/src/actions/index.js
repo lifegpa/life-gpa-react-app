@@ -46,6 +46,11 @@ export const UPDATE_TASK_FAIL = "UPDATE_TASK_FAIL";
 export const SUBMIT_DAILY_TASKS = "SUBMIT_DAILY_TASKS"; 
 export const TOGGLE_TASK_DONE = "TOGGLE_TASK_DONE";  
 
+// GPAS 
+
+export const GET_GPA_SUCCESS = "GET_GPA_SUCCESS";
+export const GET_GPA_FAIL = "GET_GPA_FAIL";
+
 
 // ACTION CREATORS 
 
@@ -107,15 +112,12 @@ export const getGPA = () => dispatch => {
         })
         .then(res => {
             console.log("res", res.data)
-            dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
+            dispatch({ type: GET_GPA_SUCCESS, payload: res.data })
         })
         .catch( err => {
-            if (err.response.status === 403) {
-                dispatch({ type: UNAUTHORIZED_USER, payload: err.response })
-            } else {
-                dispatch({ type: GET_DATA_FAIL, payload: err.response })
+                console.log(err);
             }
-        })
+        )
 }
 
 // ADD TASK 
@@ -154,8 +156,16 @@ export const deleteTask = task => dispatch => {
           });
 } 
 
-export const updateTask = task => dispatch => {
+export const openUpdateTask = () => dispatch => {
     dispatch({ type: UPDATING_TASK }); 
+}
+
+
+
+
+
+export const updateTask = task => dispatch => {
+    
     return axios 
     .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task._id}`, {
         headers: { Authorization: localStorage.getItem('token') }
