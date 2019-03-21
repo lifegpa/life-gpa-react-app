@@ -1,3 +1,87 @@
-button {
-    color: red;
+nav { 
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 2%;
+} 
+
+.task-list {
+    background: black;
+    border: 1px solid lightcyan;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 15%;
+    padding: 2%;
+    justify-content: center;
+
+} 
+
+.task-list h1 {
+    text-align: center;
+    
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid lightcyan;
+    padding: 5%;
+
+}
+
+.task-button-container {
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+}
+
+.gpa {
+    background: black;
+    border: 1px solid lightcyan;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 15%;
+    padding: 2%;
+} 
+
+.gpa h1 {
+    margin-bottom: 2%;
+    border-bottom: 1px solid lightcyan;
+}
+
+
+.add-task {
+    border: 1px solid lightcyan;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 15%;
+    padding: 2%;
+}
+
+.add-task button { 
+    margin: 10px 20%;
+}
+
+footer {
+    background-color: black;
+    text-align: center;
+    color: lightcyan;
+    padding: 2px;
+    margin-top: 1%;
+} 
+
+.success {
+    color: #28a745;
+    font-size: 5rem;
+}
+
+.failure {
+    color: #dc3545; 
+    font-size: 5rem;
 }

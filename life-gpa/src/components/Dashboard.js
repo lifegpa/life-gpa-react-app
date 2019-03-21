@@ -6,7 +6,9 @@ import { getData, toggleCompleted, deleteTask, getGPA, updateTask, submitTasks }
 
 import './component-styles/dashboard.css'; 
 
+import Footer from './Footer';
 import TaskList from './TaskList';
+import AddTasksForm from './AddTasksForm';
 import GPAContainer from './GPAContainer'; 
 import Nav from './Nav';
 
@@ -60,7 +62,9 @@ class Dashboard extends React.Component {
             <Nav /> 
             <h1>Welcome to LifeGPA</h1> 
             <GPAContainer />  
-            <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} deleteTask={this.deleteTask} updateTask={this.updateTask} submitTasks={this.submitTasks} /> 
+            <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} deleteTask={this.deleteTask} updateTask={this.updateTask} submitTasks={this.submitTasks} />
+            <AddTasksForm />
+            <Footer />
         </div>
         )
     }

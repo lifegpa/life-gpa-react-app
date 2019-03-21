@@ -56,21 +56,22 @@ toggleUpdate = () => {
                 this.toggleUpdate()}}>
                     <input onChange={this.handleInput} type="text" name="name" placeholder={this.props.task.name} /> 
                     <input onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category}  /> 
-                    <button type="submit">submit</button>
+                    <button className={`btn btn-outline-light`} type="submit">submit</button>
                 </form>
             </div>
         ) 
         else 
     return (
-        <div>
+        <div className="task">
             <p>Task: {this.props.task.name}</p>
             <p>Category: {this.props.task.category}</p> 
-            {this.props.task.completed ?  <p>complete</p> :
-                <p>incomplete</p>
-            }
-            <button onClick={() => this.props.toggleCompleted(this.props.task)}>I did this today!</button>
-            <button onClick={() => {this.props.deleteTask(this.props.task)}}>delete</button> 
-            <button onClick={() => this.toggleUpdate()}>edit</button>
+            {this.props.task.completed ? <> <i className="success fas fa-calendar-check"></i> </> : <> <i class="failure fas fa-calendar-times"></i> </>
+            } 
+            <div className="task-button-container">
+            <button  className={`btn btn-success`} onClick={() => this.props.toggleCompleted(this.props.task)}>I did this today!</button>
+            <button className={`btn btn-danger`} onClick={() => {this.props.deleteTask(this.props.task)}}>delete</button> 
+            <button className={`btn btn-warning`} onClick={() => this.toggleUpdate()}>edit</button>
+            </div>
         </div>
     )
     }
