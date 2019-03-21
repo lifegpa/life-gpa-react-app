@@ -53,7 +53,11 @@ const reducer = (state = initialState, action) => {
         case GET_GPA_SUCCESS: 
             return {
                 ...state, 
-                error: action.payload.data.error,
+                daily: action.payload.daily,
+                weekly: action.payload.weekly,
+                monthly: action.payload.monthly,
+                allTime: action.payload.allTime,
+                error: action.payload.error,
                 errorStatusCode: action.payload.status,
                 gettingGPA: false
             }
@@ -88,11 +92,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 deletingTask: false
             }
-        case UPDATING_TASK: 
-            return {
-                ...state,
-                updatingTask: true
-            }
+        // case UPDATING_TASK: 
+        //     return {
+        //         ...state,
+        //         updatingTask: true
+        //     }
         case UPDATE_TASK: 
             return {
                 ...state, 

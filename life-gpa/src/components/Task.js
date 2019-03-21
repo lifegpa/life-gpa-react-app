@@ -1,21 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
-import { openUpdateTask } from '../actions';
+
 
 
 class Task extends React.Component { 
     constructor() {
         super();
-    // this.state = { 
-    //     task: {
-    //     name: this.props.task.name,
-    //     category: this.props.task.category,
-    //     completed: this.props.task.completed
-    //     }
-    // }
+        console.log("task props", this.props);
+        this.state = { 
+            task: {
+            name: "",
+            category: "",
+            completed: ""
+            }, 
+            updatingTask: false
+        }
+    }
+
+componentDidMount() {
+    this.state = { 
+        task: {
+        name: this.props.task.name,
+        category: this.props.task.category,
+        completed: this.props.task.completed
+        }, 
+        updatingTask: false 
+    }
 }
 
 handleInput = e => {
+    e.preventDefault();
     this.setState({
       
         ...this.state,
@@ -24,12 +38,18 @@ handleInput = e => {
     });
 }
 
+toggleUpdate = () => {
+    this.setState({
+        updatingTask: !this.state.updatingTask
+    })
+}
+
     render() {
-        if (this.props.updatingTask) return (
+        if (this.state.updatingTask) return (
             <div>
-                <form onSubmit={() => this.props.updateTask()}>
-                    <input onChange={this.handleInput} type="text" name="task" placeholder={this.props.task.name} value={this.props.task.name} /> 
-                    <input onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category} value={this.props.task.category} /> 
+                <form onSubmit={() => this.props.updateTask(this.props.task)}>
+                    <input onChange={this.handleInput} type="text" name="task" placeholder={this.props.task.name} /> 
+                    <input onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category}  /> 
                     <button type="submit">submit</button>
                 </form>
             </div>
@@ -44,7 +64,7 @@ handleInput = e => {
             }
             <button onClick={() => this.props.toggleCompleted(this.props.task)}>I did this today!</button>
             <button onClick={() => {this.props.deleteTask(this.props.task)}}>delete</button> 
-            <button onClick={() => this.props.openUpdateTask(this.props.task)}>edit</button>
+            <button onClick={() => this.toggleUpdate()}>edit</button>
         </div>
     )
     }
@@ -56,4 +76,4 @@ const mapStateToProps = ({ error, updatingTask }) => ({
 }); 
 
 
-export default connect(mapStateToProps, { openUpdateTask })(Task); 
+export default connect(mapStateToProps, { })(Task); 

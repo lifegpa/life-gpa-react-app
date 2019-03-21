@@ -4,6 +4,8 @@ import {withRouter} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { getData, toggleCompleted, deleteTask, getGPA } from '../actions'; 
 
+import './component-styles/dashboard.css'; 
+
 import TaskList from './TaskList';
 import GPAContainer from './GPAContainer'; 
 import Nav from './Nav';
@@ -13,6 +15,7 @@ import Nav from './Nav';
 class Dashboard extends React.Component {
     constructor() {
         super();
+        console.log("DB props", this.props);
         this.state = {
             tasks: [], 
             gpa: {}
@@ -45,8 +48,8 @@ class Dashboard extends React.Component {
         else return (
         <div>
             <Nav /> 
-            <h1>Hi {this.props.user}!</h1> 
-            <GPAContainer gpa={this.props.gpa} />  
+            <h1>Welcome to LifeGPA</h1> 
+            <GPAContainer />  
             <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} deleteTask={this.deleteTask} updateTask={this.updateTask} /> 
         </div>
         )

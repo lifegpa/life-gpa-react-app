@@ -93,6 +93,8 @@ export const getData = () => dispatch => {
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
     })
     .catch( err => {
+        console.dir(err);
+        console.log("err", err);
         if (err.response.status === 403) {
             dispatch({ type: UNAUTHORIZED_USER, payload: err.response })
         } else {
@@ -120,7 +122,7 @@ export const getGPA = () => dispatch => {
         )
 }
 
-// ADD TASK 
+// add task
 
 export const addTask = task => dispatch => {
     return axios
@@ -139,6 +141,9 @@ export const addTask = task => dispatch => {
       });
 }
 
+
+// delete task
+
 export const deleteTask = task => dispatch => {
     return axios 
     .delete(`https://life-gpa-api.herokuapp.com/api/tasks/${task._id}`, {
@@ -156,12 +161,13 @@ export const deleteTask = task => dispatch => {
           });
 } 
 
+
+
+// update task
+
 export const openUpdateTask = () => dispatch => {
     dispatch({ type: UPDATING_TASK }); 
 }
-
-
-
 
 
 export const updateTask = task => dispatch => {

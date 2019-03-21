@@ -14,7 +14,7 @@ const TaskList = props => {
                 <Task key={task._id} task={task} toggleCompleted={props.toggleCompleted} deleteTask={props.deleteTask} updateTask={props.updateTask} /> 
                 </div>
             )})}
-            <button>Submit your tasks for grading!</button>
+            <button onClick={() => {}}>Submit your tasks for grading!</button>
             <AddTasksForm />
         </div>
     )
