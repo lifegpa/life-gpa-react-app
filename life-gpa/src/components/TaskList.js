@@ -1,6 +1,6 @@
 import React from 'react';
 import Task from './Task';
-import AddTasksForm from './AddTasksForm';
+import AddTasksForm from './AddTasksForm'; 
 
 
 const TaskList = props => {
@@ -14,7 +14,7 @@ const TaskList = props => {
                 <Task key={task._id} task={task} toggleCompleted={props.toggleCompleted} deleteTask={props.deleteTask} updateTask={props.updateTask} /> 
                 </div>
             )})}
-            <button onClick={() => {}}>Submit your tasks for grading!</button>
+            <button onClick={() => { props.submitTasks()}}>Submit your tasks for grading!</button>
             <AddTasksForm />
         </div>
     )

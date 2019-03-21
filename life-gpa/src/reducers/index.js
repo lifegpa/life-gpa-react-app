@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE, GET_GPA_SUCCESS, GET_GPA_FAIL } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS, GETTING_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL, ADDING_TASK, ADD_TASK, DELETE_TASK, DELETING_TASK, UPDATE_TASK, UPDATING_TASK, TOGGLE_TASK_DONE, GET_GPA_SUCCESS, GET_GPA_FAIL, SUBMIT_TASKS } from '../actions';
 
 
 
@@ -11,6 +11,7 @@ addingTask: false,
 gettingGPA: false,
 gettingTask: false,
 deletingTask: false,
+submittingTask: false,
 error: null, 
 errorStatusCode: null,
 token: localStorage.getItem('token')
@@ -68,7 +69,12 @@ const reducer = (state = initialState, action) => {
                 errorStatusCode: action.payload.status,
                 gettingGPA: false
             }
-
+        case SUBMIT_TASKS: 
+            return {
+                ...state,
+                gpa: action.payload,
+                submittingTask: false
+            }
         case ADDING_TASK: 
             return {
                 ...state, 
