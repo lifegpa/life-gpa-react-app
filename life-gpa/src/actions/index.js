@@ -43,8 +43,13 @@ export const UPDATING_TASK = "UPDATING_TASK";
 export const UPDATE_TASK_FAIL = "UPDATE_TASK_FAIL";
 
 //  grade tasks
-
+export const SUBMIT_DAILY_TASKS = "SUBMIT_DAILY_TASKS"; 
 export const TOGGLE_TASK_DONE = "TOGGLE_TASK_DONE";  
+
+// GPAS 
+
+export const GET_GPA_SUCCESS = "GET_GPA_SUCCESS";
+export const GET_GPA_FAIL = "GET_GPA_FAIL";
 
 
 // ACTION CREATORS 
@@ -88,6 +93,8 @@ export const getData = () => dispatch => {
         dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
     })
     .catch( err => {
+        console.dir(err);
+        console.log("err", err);
         if (err.response.status === 403) {
             dispatch({ type: UNAUTHORIZED_USER, payload: err.response })
         } else {
@@ -96,8 +103,26 @@ export const getData = () => dispatch => {
     })
 }
 
+// GPAS
 
-// ADD TASK 
+export const getGPA = () => dispatch => {
+    axios 
+    .get('https://life-gpa-api.herokuapp.com/api/tasks/gpa', {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+        })
+        .then(res => {
+            console.log("res", res.data)
+            dispatch({ type: GET_GPA_SUCCESS, payload: res.data })
+        })
+        .catch( err => {
+                console.log(err);
+            }
+        )
+}
+
+// add task
 
 export const addTask = task => dispatch => {
     return axios
@@ -116,14 +141,16 @@ export const addTask = task => dispatch => {
       });
 }
 
+
+// delete task
+
 export const deleteTask = task => dispatch => {
-    dispatch({ type: DELETING_TASK }); 
     return axios 
-    .delete(`https://life-gpa-api.herokuapp.com/api/tasks/${task.id}`, {
+    .delete(`https://life-gpa-api.herokuapp.com/api/tasks/${task._id}`, {
         headers: { Authorization: localStorage.getItem('token') }
     })
     .then(res => {
-        dispatch({type: DELETE_TASK, payload: res.data }) 
+        dispatch({type: DELETE_TASK, payload: res.data }); 
     })
     .catch(err => {
         if (err.response.status === 403) {
@@ -134,10 +161,19 @@ export const deleteTask = task => dispatch => {
           });
 } 
 
-export const updateTask = task => dispatch => {
+
+
+// update task
+
+export const openUpdateTask = () => dispatch => {
     dispatch({ type: UPDATING_TASK }); 
+}
+
+
+export const updateTask = task => dispatch => {
+    
     return axios 
-    .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task.id}`, {
+    .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task._id}`, {
         headers: { Authorization: localStorage.getItem('token') }
     })
     .then(res => {
@@ -151,12 +187,18 @@ export const updateTask = task => dispatch => {
             }
           });
 
-}
+} 
 
-export const toggleCompleted = task => {
+// export const submitDailyTasks = () => dispatch => {
+
+// }
+
+
+
+export const toggleCompleted = (task) => {
 
     console.log("togglecompleted task", task);
    return {  
-    type: TOGGLE_TASK_DONE, payload: task }
+    type: TOGGLE_TASK_DONE, payload: task._id }
     
 }; 
