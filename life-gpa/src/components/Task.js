@@ -11,7 +11,7 @@ class Task extends React.Component {
             task: {
             name: "",
             category: "",
-            completed: ""
+            completed: false
             }, 
             updatingTask: false
         }
@@ -27,7 +27,9 @@ componentDidMount() {
         updatingTask: false 
     }
 }
-
+componentDidUpdate() {
+    console.log("CDM task", this.props.task.completed);
+}
 handleInput = e => {
     e.preventDefault();
     this.setState({
@@ -45,6 +47,7 @@ toggleUpdate = () => {
 }
 
     render() {
+        console.log("render", this.props.task.completed);
         if (this.state.updatingTask) return (
             <div>
                 <form onSubmit={() => this.props.updateTask(this.props.task)}>
@@ -70,9 +73,10 @@ toggleUpdate = () => {
     }
 } 
 
-const mapStateToProps = ({ error, updatingTask }) => ({
+const mapStateToProps = ({ error, updatingTask, data }) => ({
     error, 
-    updatingTask
+    updatingTask, 
+    data
 }); 
 
 

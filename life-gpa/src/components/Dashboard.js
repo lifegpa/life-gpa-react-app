@@ -25,6 +25,10 @@ class Dashboard extends React.Component {
     componentDidMount() {
         this.props.getData(); 
         
+    } 
+
+    componentDidUpdate() {
+        console.log("something updated!");
     }
 
 
