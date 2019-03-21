@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { getData, toggleCompleted, deleteTask, getGPA } from '../actions'; 
+import { getData, toggleCompleted, deleteTask, getGPA, updateTask } from '../actions'; 
 
 import './component-styles/dashboard.css'; 
 
@@ -41,8 +41,10 @@ class Dashboard extends React.Component {
         this.props.getData();
     }
 
-    updateTask = id => {
-        this.props.updateTask(id); 
+    updateTask =  (e, task) => {
+        e.preventDefault();
+        console.log(this.props.updateTask);
+        this.props.updateTask(task); 
         this.props.getData();
     }
 
@@ -65,4 +67,4 @@ const mapStateToProps = ({ data }) => ({
     data
 })
 
-export default withRouter(connect(mapStateToProps, {getData, toggleCompleted, deleteTask, getGPA })(Dashboard));
+export default withRouter(connect(mapStateToProps, {getData, toggleCompleted, deleteTask, getGPA, updateTask })(Dashboard));
