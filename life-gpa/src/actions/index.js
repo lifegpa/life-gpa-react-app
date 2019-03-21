@@ -165,15 +165,15 @@ export const deleteTask = task => dispatch => {
 
 // update task
 
-export const openUpdateTask = () => dispatch => {
-    dispatch({ type: UPDATING_TASK }); 
-}
+// export const openUpdateTask = () => dispatch => {
+//     dispatch({ type: UPDATING_TASK }); 
+// }
 
 
 export const updateTask = task => dispatch => {
-    
+    console.log("updateTask action", task);
     return axios 
-    .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task._id}`, {
+    .put(`https://life-gpa-api.herokuapp.com/api/tasks/${task._id}`, task, {
         headers: { Authorization: localStorage.getItem('token') }
     })
     .then(res => {

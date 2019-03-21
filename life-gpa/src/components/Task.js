@@ -18,14 +18,15 @@ class Task extends React.Component {
     }
 
 componentDidMount() {
-    this.state = { 
+    this.setState({ 
         task: {
+        _id: this.props.task._id,
         name: this.props.task.name,
         category: this.props.task.category,
         completed: this.props.task.completed
         }, 
         updatingTask: false 
-    }
+    })
 }
 componentDidUpdate() {
     console.log("CDM task", this.props.task.completed);
@@ -35,7 +36,8 @@ handleInput = e => {
     this.setState({
       
         ...this.state,
-         [e.target.name]: e.target.value 
+        task: {...this.state.task,
+            [e.target.name]: e.target.value  }
         
     });
 }
@@ -50,8 +52,9 @@ toggleUpdate = () => {
         console.log("render", this.props.task.completed);
         if (this.state.updatingTask) return (
             <div>
-                <form onSubmit={() => this.props.updateTask(this.props.task)}>
-                    <input onChange={this.handleInput} type="text" name="task" placeholder={this.props.task.name} /> 
+                <form onSubmit={(e) => {this.props.updateTask( e, this.state.task) 
+                this.toggleUpdate()}}>
+                    <input onChange={this.handleInput} type="text" name="name" placeholder={this.props.task.name} /> 
                     <input onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category}  /> 
                     <button type="submit">submit</button>
                 </form>
