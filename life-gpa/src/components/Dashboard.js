@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { getData, toggleCompleted, deleteTask, getGPA, updateTask } from '../actions'; 
+import { getData, toggleCompleted, deleteTask, getGPA, updateTask, submitTasks } from '../actions'; 
 
 import './component-styles/dashboard.css'; 
 
+import Footer from './Footer';
 import TaskList from './TaskList';
+import AddTasksForm from './AddTasksForm';
 import GPAContainer from './GPAContainer'; 
 import Nav from './Nav';
 
@@ -48,6 +50,10 @@ class Dashboard extends React.Component {
         this.props.getData();
     }
 
+    submitTasks = () => {
+        this.props.submitTasks(this.props.data); 
+    }
+
     render() {
         if (!this.props.data) 
         return <Loader type="Audio" color="#C62727" height={300} width={300} />
@@ -56,15 +62,18 @@ class Dashboard extends React.Component {
             <Nav /> 
             <h1>Welcome to LifeGPA</h1> 
             <GPAContainer />  
-            <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} deleteTask={this.deleteTask} updateTask={this.updateTask} /> 
+            <TaskList tasks={this.props.data} toggleCompleted={this.toggleCompleted} deleteTask={this.deleteTask} updateTask={this.updateTask} submitTasks={this.submitTasks} />
+            <AddTasksForm />
+            <Footer />
         </div>
         )
     }
 }
 
 
-const mapStateToProps = ({ data }) => ({
-    data
+const mapStateToProps = ({ data, tasks }) => ({
+    data, 
+    tasks
 })
 
-export default withRouter(connect(mapStateToProps, {getData, toggleCompleted, deleteTask, getGPA, updateTask })(Dashboard));
+export default withRouter(connect(mapStateToProps, {getData, toggleCompleted, deleteTask, getGPA, updateTask, submitTasks })(Dashboard));

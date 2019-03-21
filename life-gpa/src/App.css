@@ -1,4 +1,12 @@
 .App {
   text-align: center;
+  background-color: black;
 }
 
+* {
+  box-sizing: border-box;
+} 
+
+.login-link {
+  color: lightcyan;
+}

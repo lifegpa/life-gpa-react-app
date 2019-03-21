@@ -21,12 +21,12 @@ class GPAContainer extends React.Component {
     render() {
         console.log("daily props",this.props.daily);
     return (
-        <div>
-        <h1>GPA</h1>
-         <p>Daily GPA {this.props.daily}</p>
-         <p>Weekly GPA {this.props.weekly}</p>
-         <p>Monthly GPA {this.props.monthly}</p>
-         <p>Total GPA {this.props.allTime}</p>
+        <div className="gpa">
+        <h1>LifeGPA</h1>
+         <p>Daily Grade: {this.props.daily}%</p>
+         <p>Weekly Grade: {this.props.weekly}%</p>
+         <p>Monthly Grade: {this.props.monthly}%</p>
+         <p>Total GPA: {this.props.allTime}%</p>
         </div>
     )
     }

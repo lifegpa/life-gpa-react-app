@@ -6,7 +6,7 @@ const Nav = () => {
     return (
         <div>
             <nav>
-               <NavLink exact to="/login">sign out</NavLink>
+              <button className={`btn btn-outline-light`}><NavLink exact to="/login">sign out</NavLink></button>
             </nav>
         </div>
     )
