@@ -2,6 +2,39 @@ import React from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; 
 import { signUp } from '../actions';
+import styled from 'styled-components'; 
+
+const SignUph1 = styled.h1`
+color: lightcyan; 
+text-align: center;
+`; 
+
+const SignUpWrapperDiv = styled.div`
+background-color: black; 
+background-size: cover;
+padding: 10%;
+width: 80%;
+height: 100%;
+margin: 10%;
+`;
+
+const SignUpForm = styled.form`
+display: flex;
+flex-direction: column;
+`; 
+
+const SignupH3 = styled.h3`
+padding-top: 15px;
+color: lightcyan;
+`; 
+
+const StyledButton = styled.button`
+margin: 2%;
+`;
+
+const SignUpInput = styled.input`
+margin: 2%;
+`; 
 
 class SignupForm extends React.Component {
     constructor() {
@@ -32,31 +65,31 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-        <div>
-            <h1>Sign up for LifeGPA!</h1>
-            <form onSubmit={this.signUp}>
-            <input 
+        <SignUpWrapperDiv>
+            <SignUph1>Sign up for LifeGPA!</SignUph1>
+            <SignUpForm onSubmit={this.signUp}>
+            <SignUpInput 
             type="text"
             name="name"
             placeholder="name"
             onChange={this.handleInput}
              /> 
-            <input 
+            <SignUpInput 
             type="text"
             name="email"
             placeholder="email"
             onChange={this.handleInput}
              /> 
-            <input 
+            <SignUpInput 
             type="password"
             name="password"
             placeholder="password" 
             onChange={this.handleInput} /> 
-            <button type="submit">Start your journey</button>
-            </form> 
-            <h3>Already signed up?</h3>
-            <Link to="/login">Log in</Link>
-        </div>
+            <StyledButton className={`btn btn-outline-light`} type="submit">Start your journey</StyledButton>
+            </SignUpForm> 
+            <SignupH3>Already signed up?</SignupH3>
+            <StyledButton className={`btn btn-outline-light`} ><Link className="login-link" to="/login">Log in</Link></StyledButton>
+        </SignUpWrapperDiv>
         )
     }
 }

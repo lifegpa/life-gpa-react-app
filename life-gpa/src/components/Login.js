@@ -3,7 +3,40 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { login } from '../actions';
+import styled from 'styled-components'; 
 
+
+const StyledInput = styled.input`
+margin: 2%;
+`; 
+
+const LoginForm = styled.form`
+display: flex;
+flex-direction: column;
+`;
+
+const LoginH1 = styled.h1`
+color: lightcyan; 
+text-align: center;
+`;
+
+const LoginWrapperDiv = styled.div`
+background-color: black; 
+background-size: cover;
+padding: 10%;
+width: 80%;
+height: 100%;
+margin: 10%;
+`; 
+
+const LoginH3 = styled.h3`
+padding-top: 15px;
+color: lightcyan;
+`;
+
+const StyledButton = styled.button`
+margin: 2%;
+`;
 
 class Login extends React.Component {
     state= { 
@@ -36,9 +69,9 @@ class Login extends React.Component {
         return <Loader type="Audio" color="#C62727" height={100} width={100} />
         else
         return (
-        <div>
-            <h1>Welcome Back to LifeGPA!</h1>
-            <form onSubmit={this.login}>
+        <LoginWrapperDiv>
+            <LoginH1>Welcome Back to LifeGPA!</LoginH1>
+            <LoginForm onSubmit={this.login}>
             {/* <input 
             type="text"
             name="name"
@@ -46,24 +79,24 @@ class Login extends React.Component {
             placeholder="name"
             onChange={this.handleInput}
              />  */}
-            <input 
+            <StyledInput 
             type="text"
             name="email"
             value={this.state.credentials.email}
             placeholder="email"
             onChange={this.handleInput}
              /> 
-            <input 
+            <StyledInput 
             type="password"
             name="password"
             value={this.state.credentials.password}
             placeholder="password" 
             onChange={this.handleInput} /> 
-            <button type="submit">Log in</button>
-            </form> 
-            <h3>Not signed up yet?</h3>
-            <Link to="/signup">Sign up now</Link>
-        </div>
+            <StyledButton className={`btn btn-outline-light`} type="submit">Log in</StyledButton>
+            </LoginForm> 
+            <LoginH3>Not signed up yet?</LoginH3>
+            <StyledButton className={`btn btn-outline-light`}><Link to="/signup">Sign up now</Link></StyledButton>
+        </LoginWrapperDiv>
         )
     }
 }

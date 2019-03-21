@@ -73,6 +73,10 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: action.payload,
+                daily: action.payload.daily,
+                weekly: action.payload.weekly,
+                monthly: action.payload.monthly,
+                allTime: action.payload.allTime,
                 submittingTask: false
             }
         case ADDING_TASK: 

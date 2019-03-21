@@ -197,7 +197,7 @@ export const submitTasks = tasks => dispatch => {
     console.log( "submittasks action", tasks
     ); 
     return axios
-      .post('https://life-gpa-api.herokuapp.com/api/tasks/submit', tasks, {
+      .post('https://life-gpa-api.herokuapp.com/api/tasks/submit', {tasks}, {
         headers: { Authorization: localStorage.getItem('token') }
       })
       .then(res => {
