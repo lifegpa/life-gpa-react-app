@@ -4,7 +4,9 @@ nav {
     width: 100%;
     padding: 2%;
 } 
-
+h1 {
+    text-align: center;
+}
 .task-list {
     background: black;
     border: 1px solid lightcyan;
@@ -32,14 +34,87 @@ nav {
     align-items: center;
     border: 1px solid lightcyan;
     padding: 5%;
+} 
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.grade-yourself-container {
+    display: flex; 
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;
 }
 
 .task-button-container {
     display: flex;
     flex-direction: row;
-    align-items: space-between;
-    justify-content: space-between;
+    align-items: space-around;
+    justify-content: space-around;
     margin: 5%;
+}
+
+.edit-submit {
+    margin: 5%;
+}
+
+.task-name {
+    border: 1px solid lightcyan;
+    width: 100%;
+    border: 1px solid black; 
+    background-color: lightcyan;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5%;
+}
+
+.category-name { 
+    border: 1px solid black; 
+    background-color: lightcyan;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    
+} 
+
+.task-name p {
+    background-color: lightcyan;
+    color: black;
+    text-align: center;
+    padding-top: 1%;
+    margin: 2%;
+}
+
+.category-name p {
+    background-color: lightcyan;
+    color: black;
+    text-align: center;
+    padding-top: 1%;
+    margin: 2%;
+}
+
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-input {
+    background-color: lightcyan;
+    color: black;
+} 
+
+.category-input {
+    background-color: lightcyan;
+    color: black;
 }
 
 .gpa {
@@ -83,9 +158,11 @@ footer {
 .success {
     color: #28a745;
     font-size: 5rem;
+    margin: 5%;
 }
 
 .failure {
     color: #dc3545; 
     font-size: 5rem;
+    margin: 5%;
 }

@@ -51,24 +51,29 @@ toggleUpdate = () => {
     render() {
         console.log("render", this.props.task.completed);
         if (this.state.updatingTask) return (
-            <div>
-                <form onSubmit={(e) => {this.props.updateTask( e, this.state.task) 
+            <div className="task">
+                <form className="edit-form" onSubmit={(e) => {this.props.updateTask( e, this.state.task) 
                 this.toggleUpdate()}}>
-                    <input onChange={this.handleInput} type="text" name="name" placeholder={this.props.task.name} /> 
-                    <input onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category}  /> 
-                    <button className={`btn btn-outline-light`} type="submit">submit</button>
+               
+                    <input className="task-input" onChange={this.handleInput} type="text" name="name" placeholder={this.props.task.name} /> 
+            
+                    <input className="category-input" onChange={this.handleInput} type="text" name="category" placeholder={+ this.props.task.category}  /> 
+
+                    <button className={`btn btn-success edit-submit`} type="submit">submit changes to task</button>
                 </form>
             </div>
         ) 
         else 
     return (
         <div className="task">
-            <p>Task: {this.props.task.name}</p>
-            <p>Category: {this.props.task.category}</p> 
+            <div className="task-name"> <p>Task: </p><p>{this.props.task.name}</p></div> 
+            <div className="category-name"><p>Category:</p><p>{this.props.task.category}</p></div> 
+            <div className="grade-yourself-container">
             {this.props.task.completed ? <> <i className="success fas fa-calendar-check"></i> </> : <> <i class="failure fas fa-calendar-times"></i> </>
             } 
-            <div className="task-button-container">
             <button  className={`btn btn-success`} onClick={() => this.props.toggleCompleted(this.props.task)}>I did this today!</button>
+            </div>
+            <div className="task-button-container">
             <button className={`btn btn-danger`} onClick={() => {this.props.deleteTask(this.props.task)}}>delete</button> 
             <button className={`btn btn-warning`} onClick={() => this.toggleUpdate()}>edit</button>
             </div>
