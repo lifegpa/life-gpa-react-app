@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
     }
 
     submitTasks = () => {
-        this.props.submitTasks(); 
+        this.props.submitTasks(this.props.data); 
     }
 
     render() {
@@ -67,8 +67,9 @@ class Dashboard extends React.Component {
 }
 
 
-const mapStateToProps = ({ data }) => ({
-    data
+const mapStateToProps = ({ data, tasks }) => ({
+    data, 
+    tasks
 })
 
 export default withRouter(connect(mapStateToProps, {getData, toggleCompleted, deleteTask, getGPA, updateTask, submitTasks })(Dashboard));

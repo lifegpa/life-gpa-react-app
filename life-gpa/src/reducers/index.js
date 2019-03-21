@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
         case SUBMIT_TASKS: 
             return {
                 ...state,
-                gpa: action.payload,
+                tasks: action.payload,
                 submittingTask: false
             }
         case ADDING_TASK: 
