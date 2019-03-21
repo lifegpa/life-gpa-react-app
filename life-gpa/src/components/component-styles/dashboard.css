@@ -71,6 +71,7 @@ h1 {
     align-items: center;
     justify-content: center;
     margin: 5%;
+    padding: 5%;
 }
 
 .category-name { 
@@ -78,9 +79,10 @@ h1 {
     background-color: lightcyan;
     width: 100%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding: 5%;
     
 } 
 
@@ -89,7 +91,7 @@ h1 {
     color: black;
     text-align: center;
     padding-top: 1%;
-    margin: 2%;
+    
 }
 
 .category-name p {
@@ -97,7 +99,7 @@ h1 {
     color: black;
     text-align: center;
     padding-top: 1%;
-    margin: 2%;
+    
 }
 
 
