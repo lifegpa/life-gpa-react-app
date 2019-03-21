@@ -15,7 +15,8 @@ class App extends Component {
     console.log(PrivateRoute); 
     return (
       <Router>
-      <div className="App">
+      <div className="App"> 
+      <Route exact path="/" component={Login} />
       <Route path="/login" component={Login} /> 
       <Route path="/signup" component={SignupForm} />  
       <PrivateRoute exact path="/protected" component={Dashboard} />
