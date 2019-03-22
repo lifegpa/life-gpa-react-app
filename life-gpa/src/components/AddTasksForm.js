@@ -14,8 +14,12 @@ class AddTaskForm extends React.Component {
     }
 }
 
+    componentDidMount() {
+        this.setState({name: '', category: ''})
+    }
 
     handleInput = e => {
+        e.preventDefault();
         this.setState({ 
             task: {
                 ...this.state.task,
@@ -25,8 +29,6 @@ class AddTaskForm extends React.Component {
     }
 
     addTask = e => {
-        e.preventDefault();
-        console.log("state.task", this.state.task);
         this.props.addTask(this.state.task);
         this.props.getData(); 
     }
