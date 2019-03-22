@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+
 import { getData, toggleCompleted, deleteTask, getGPA, updateTask, submitTasks } from '../actions'; 
 
 import './component-styles/dashboard.css'; 
@@ -17,7 +18,6 @@ import Nav from './Nav';
 class Dashboard extends React.Component {
     constructor() {
         super();
-        console.log("DB props", this.props);
         this.state = {
             tasks: [], 
             gpa: {}

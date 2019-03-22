@@ -14,8 +14,12 @@ class AddTaskForm extends React.Component {
     }
 }
 
+    componentDidMount() {
+        this.setState({name: '', category: ''})
+    }
 
     handleInput = e => {
+        e.preventDefault();
         this.setState({ 
             task: {
                 ...this.state.task,
@@ -25,8 +29,6 @@ class AddTaskForm extends React.Component {
     }
 
     addTask = e => {
-        e.preventDefault();
-        console.log("state.task", this.state.task);
         this.props.addTask(this.state.task);
         this.props.getData(); 
     }
@@ -37,7 +39,7 @@ class AddTaskForm extends React.Component {
             
             <form className="add-task" onSubmit={this.addTask}>
             <h1>Add a Task to your Day!</h1>
-            <p>Here you can add a task and its category to be put on your Task List. Each day, mark whether you completed each task and we'll do the grading for you!</p>
+            <p>Here you can add a task and its category to be put on your Task List. Each day, mark whether you completed each task and we'll do the grading for you!  That is unless your life go</p>
                 <input 
                 type="text" 
                 name="name"

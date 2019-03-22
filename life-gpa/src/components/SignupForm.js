@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; 
 import { signUp } from '../actions';
-import styled from 'styled-components'; 
+import styled from 'styled-components';
+import Logo from './Logo-Component/Logo'; 
 
 const SignUph1 = styled.h1`
 color: lightcyan; 
@@ -12,10 +13,10 @@ text-align: center;
 const SignUpWrapperDiv = styled.div`
 background-color: black; 
 background-size: cover;
-padding: 10%;
+padding: 5%;
 width: 80%;
 height: 100%;
-margin: 10%;
+margin: 0 10%;
 `;
 
 const SignUpForm = styled.form`
@@ -66,6 +67,7 @@ class SignupForm extends React.Component {
     render() {
         return (
         <SignUpWrapperDiv>
+            <Logo />
             <SignUph1>Sign up for LifeGPA!</SignUph1>
             <SignUpForm onSubmit={this.signUp}>
             <SignUpInput 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 
+
 class Task extends React.Component { 
     constructor() {
         super();
@@ -57,7 +58,7 @@ toggleUpdate = () => {
                
                     <input className="task-input" onChange={this.handleInput} type="text" name="name" placeholder={this.props.task.name} /> 
             
-                    <input className="category-input" onChange={this.handleInput} type="text" name="category" placeholder={+ this.props.task.category}  /> 
+                    <input className="category-input" onChange={this.handleInput} type="text" name="category" placeholder={this.props.task.category}  /> 
 
                     <button className={`btn btn-success edit-submit`} type="submit">submit changes to task</button>
                 </form>
