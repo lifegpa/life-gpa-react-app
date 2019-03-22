@@ -25,7 +25,6 @@ class AddTaskForm extends React.Component {
     }
 
     addTask = e => {
-        e.preventDefault();
         console.log("state.task", this.state.task);
         this.props.addTask(this.state.task);
         this.props.getData(); 
