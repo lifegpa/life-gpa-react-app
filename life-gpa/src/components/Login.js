@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import Logo from './Logo-Component/Logo';
 import { login } from '../actions';
 import styled from 'styled-components'; 
+
 
 
 const StyledInput = styled.input`
@@ -23,10 +25,10 @@ text-align: center;
 const LoginWrapperDiv = styled.div`
 background-color: black; 
 background-size: cover;
-padding: 10%;
+padding: 5%;
 width: 80%;
 height: 100%;
-margin: 10%;
+margin: 0 10%;
 `; 
 
 const LoginH3 = styled.h3`
@@ -70,6 +72,7 @@ class Login extends React.Component {
         else
         return (
         <LoginWrapperDiv>
+            <Logo />
             <LoginH1>Welcome Back to LifeGPA!</LoginH1>
             <LoginForm onSubmit={this.login}>
             {/* <input 
