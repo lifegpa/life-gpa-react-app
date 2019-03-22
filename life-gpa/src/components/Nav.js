@@ -7,8 +7,10 @@ const Nav = () => {
     return (
         <div>
             <nav>
+                <div>
                 <img className="logo-img" src={logo} alt="lifeGPA" />
               <button className={`btn btn-outline-light`}><NavLink exact to="/login">sign out</NavLink></button>
+              </div>
             </nav>
         </div>
     )
