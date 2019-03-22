@@ -3,6 +3,11 @@ nav {
     flex-direction: row;
     flex-wrap: nowrap;
 } 
+
+nav button {
+    height: 4rem;
+}
+
 h1 {
     text-align: center;
 }
