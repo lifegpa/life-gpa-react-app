@@ -2,8 +2,8 @@ nav {
     display:flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: flex-start;
+    justify-content: flex-start;
 } 
 
 nav button {
